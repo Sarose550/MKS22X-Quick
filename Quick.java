@@ -6,7 +6,11 @@ public class Quick{
 			System.out.print(data[i] + " ");
 		}
 		System.out.println();
-		System.out.println(quickselect(data, 5));
+		partition(data, 0, 8);
+		for(int j = 0; j < data.length; j++){
+			System.out.print(data[j] + " ");
+		}
+		//System.out.println(quickselect(data, 5));
 	}
 	/*Modify the array such that:
  *1. Only the indices from start to end inclusive are considered in range
@@ -19,6 +23,9 @@ public class Quick{
 	public static int partition (int [] data, int start, int end){
 		int rand = (int) (start + (end - start) * Math.random());
 		int pivot = data[rand];
+		int temp1 = data[rand];
+		data[rand] = data[start];
+		data[start] = temp;
 		for(int i = 0; i < data.length; i++){
 			if((i < rand && data[i] > pivot) || (i > rand && data[i] < pivot)){//swap the pivot and the current element
 				int temp = data[i];
@@ -26,6 +33,12 @@ public class Quick{
 				data[rand] = temp;
 				rand = i;
 			}
+
+			for(int j = 0; j < data.length; j++){
+				System.out.print(data[j] + " ");
+			}
+
+			System.out.println();
 		}
 		return rand;
 	}
@@ -34,12 +47,13 @@ public class Quick{
 		return quickselectH(data, k, 0, data.length - 1);
 	}
 	public static int quickselectH(int[] data, int k, int start, int end){
+		if(start == end) return data[k];
 		int piv = partition(data, start, end);
 		if(piv < k){
-			return quickselectH(data, k, piv, end);
+			return quickselectH(data, k, piv+1, start);
 		}
 		if(piv > k){
-			return quickselectH(data, k, start, piv);
+			return quickselectH(data, k, end, piv);
 		}
 		return data[piv];
 	}
