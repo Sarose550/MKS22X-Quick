@@ -25,22 +25,26 @@ public class Quick{
 		int pivot = data[rand];
 		int temp1 = data[rand];
 		data[rand] = data[start];
-		data[start] = temp;
+		data[start] = temp1;//swap the first element with the pivot
+		int place = start + 1;
 		for(int i = 0; i < data.length; i++){
-			if((i < rand && data[i] > pivot) || (i > rand && data[i] < pivot)){//swap the pivot and the current element
+			if(data[i] <= pivot){
 				int temp = data[i];
-				data[i] = pivot;
-				data[rand] = temp;
-				rand = i;
+				data[i] = data[place];
+				data[place] = temp;
+				place++;
 			}
 
-			for(int j = 0; j < data.length; j++){
-				System.out.print(data[j] + " ");
-			}
+			//for(int j = 0; j < data.length; j++){
+			//	System.out.print(data[j] + " ");
+			//}
 
-			System.out.println();
+			//System.out.println();
 		}
-		return rand;
+		int temp2 = data[place];
+		data[place] = pivot;
+		data[start] = data[place];
+		return place;
 	}
 
 	public static int quickselect(int[] data, int k){
