@@ -26,7 +26,7 @@ public class Quick{
 		int temp1 = data[rand];
 		data[rand] = data[start];
 		data[start] = temp1;//swap the first element with the pivot
-		int place = start + 1;
+		int place = start;
 		for(int i = 0; i < data.length; i++){
 			if(data[i] <= pivot){
 				int temp = data[i];
@@ -35,15 +35,15 @@ public class Quick{
 				place++;
 			}
 
-			//for(int j = 0; j < data.length; j++){
-			//	System.out.print(data[j] + " ");
-			//}
+			for(int j = 0; j < data.length; j++){
+				System.out.print(data[j] + " ");
+			}
 
-			//System.out.println();
+			System.out.println();
 		}
-		int temp2 = data[place];
-		data[place] = pivot;
-		data[start] = data[place];
+		int temp2 = data[place-1];
+		data[place-1] = pivot;
+		data[start] = temp2;
 		return place;
 	}
 
